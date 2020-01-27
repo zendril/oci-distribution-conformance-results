@@ -19,5 +19,4 @@ Registry providers should submit their own conformance results to [opencontainer
 ---
 
 This is a GitHub Pages site built from [this repo](https://github.com/bloodorangeio/oci-distribution-conformance-results).
-
-2020-01-27T16:29:46Z 9863c80bc3be7ad2aa7f3b4a9e03cb6179ea0f3a
+01-acr 2020-01-27T17:06:55Z 772d943e7aa2c4ea3ed8a64289470d255e491f65
