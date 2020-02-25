@@ -22,7 +22,7 @@ jobs:
       - name: Copy Configuration
         run: cp $GITHUB_WORKSPACE/configurations/jcr/* $GITHUB_WORKSPACE/artifactory/var/etc/artifactory
       - name: Set Permissions
-        run: sudo chown -R 1030:1030 $GITHUB_WORKSPACE/artifactory/var/etc/artifactory
+        run: sudo chown -R 1030:1030 $GITHUB_WORKSPACE/artifactory/var
       - name: Check Permissions
         run: ls -altr $GITHUB_WORKSPACE/artifactory/var/etc/artifactory
       - name: Run image
