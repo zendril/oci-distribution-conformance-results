@@ -8,15 +8,15 @@ on:
     - cron: '0 * * * *'
 jobs:
   run:
-    services:
-      jcr:
-        image: docker.bintray.io/jfrog/artifactory-jcr:latest
+    # services:
+    #   jcr:
+    #     image: docker.bintray.io/jfrog/artifactory-jcr:latest
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Workspace
         uses: actions/checkout@v2
       - name: What is Here
-        run: ls -altr $GITHUB_WORKSPACE/artifactory/var
+        run: ls -altr $GITHUB_WORKSPACE/
       - name: Set Permissions
         run: sudo chown -R 1030:1030 $GITHUB_WORKSPACE/artifactory/var
       - name: Check Permissions
