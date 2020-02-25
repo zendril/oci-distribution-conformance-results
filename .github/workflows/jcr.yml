@@ -1,0 +1,39 @@
+name: jcr
+on:
+  repository_dispatch:
+    types:
+      - manual-trigger
+      - manual-trigger-distribution
+  schedule:
+    - cron: '0 * * * *'
+jobs:
+  run:
+    services:
+      jcr:
+        image: docker.bintray.io/jfrog/artifactory-jcr:latest
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        - uses: actions/checkout@v2
+      - name: whatshere
+        run: ls -altr $GITHUB_WORKSPACE/artifactory/var
+      - name: setperms
+        run: sudo chown -R 1030:1030 $GITHUB_WORKSPACE/artifactory/var
+      - name: whatshere
+        run: ls -altr $GITHUB_WORKSPACE/artifactory/var
+      - name: Run image
+        run: docker run -it -d --name artifactory -v $GITHUB_WORKSPACE/artifactory/var/:/var/opt/jfrog/artifactory -p 8081:8081 -p 8082:8082 docker.bintray.io/jfrog/artifactory-jcr:latest
+#        run: docker run -it -d --name builder -v $GITHUB_WORKSPACE:/workspace -w /workspace docker.pkg.github.com/$GITHUB_REPOSITORY/firmware-builder:latest
+      - name: Run OCI Distribution Spec conformance tests
+        uses: opencontainers/distribution-spec@master
+        env:
+          OCI_ROOT_URL: https://jcr:8081
+          OCI_NAMESPACE: conformance-local/oci-conformance-test
+          OCI_USERNAME: ${{ secrets.JCR_USERNAME }}
+          OCI_PASSWORD: ${{ secrets.JCR_PASSWORD }}
+      # - name: Upload test report to S3
+      #   run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/distribution.html
+      #   if: always()
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
