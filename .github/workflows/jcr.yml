@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Workspace
-        - uses: actions/checkout@v2
+        uses: actions/checkout@v2
       - name: What is Here
         run: ls -altr $GITHUB_WORKSPACE/artifactory/var
       - name: Set Permissions
