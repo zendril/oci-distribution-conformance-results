@@ -31,7 +31,7 @@ jobs:
       - name: Run OCI Distribution Spec conformance tests
         uses: opencontainers/distribution-spec@master
         env:
-          OCI_ROOT_URL: https://jcr:8081
+          OCI_ROOT_URL: https://localhost:8081
           OCI_NAMESPACE: conformance-local/oci-conformance-test
           OCI_USERNAME: ${{ secrets.JCR_USERNAME }}
           OCI_PASSWORD: ${{ secrets.JCR_PASSWORD }}
