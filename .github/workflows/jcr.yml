@@ -3,7 +3,7 @@ on:
   repository_dispatch:
     types:
       - manual-trigger
-      - manual-trigger-distribution
+      - manual-trigger-jcr
   schedule:
     - cron: '0 * * * *'
 jobs:
