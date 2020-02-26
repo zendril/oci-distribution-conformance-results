@@ -30,12 +30,16 @@ jobs:
 #        run: docker run -it -d --name builder -v $GITHUB_WORKSPACE:/workspace -w /workspace docker.pkg.github.com/$GITHUB_REPOSITORY/firmware-builder:latest
       # - name: Docker ps
       #   run: docker ps
-      - name: Wait for JCR to be ready
-        uses: maddox/actions/wait-for-200@master
-        env:
-            URL: http://jcr:8081/artifactory/api/system/ping
-            SECONDS_BETWEEN_CHECKS: 5
-            MAX_TRIES: 20
+      # - name: Wait for JCR to be ready
+      #   uses: maddox/actions/wait-for-200@master
+      #   env:
+      #       URL: http://jcr:8081/artifactory/api/system/ping
+      #       SECONDS_BETWEEN_CHECKS: 5
+      #       MAX_TRIES: 20
+      - name: Sleep for 30 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '60s'
       - name: Run OCI Distribution Spec conformance tests
         uses: opencontainers/distribution-spec@master
         env:
