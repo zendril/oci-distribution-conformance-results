@@ -17,7 +17,7 @@ Registry providers should submit their own conformance results to [opencontainer
 | [goharbor/harbor](https://github.com/goharbor/harbor) | | TODO | |
 | [quay/quay](https://github.com/quay/quay) | | TODO | |
 
-### Services
+### Commercial
 
 | Registry | Vendor | Status | Notes| Links |
 | -------- | -------- | -------- | -------- | -------- |
@@ -27,12 +27,7 @@ Registry providers should submit their own conformance results to [opencontainer
 | [GCR](https://cloud.google.com/container-registry/) | Google | [![](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/gcr/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Agcr) | | [job definition](https://github.com/bloodorangeio/oci-distribution-conformance-results/blob/master/.github/workflows/gcr.yml) &#x7c; [test report](https://oci-distribution-conformance-results.s3.amazonaws.com/gcr.html) |
 | [GitHub](https://github.com/features/packages) | GitHub | [![](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/github/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Agithub) | | [job definition](https://github.com/bloodorangeio/oci-distribution-conformance-results/blob/master/.github/workflows/github.yml) &#x7c; [test report](https://oci-distribution-conformance-results.s3.amazonaws.com/github.html) |
 | [Quay.io](https://quay.io/repository/) | Red Hat | [![](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/quay/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Aquay) | | [job definition](https://github.com/bloodorangeio/oci-distribution-conformance-results/blob/master/.github/workflows/quay.yml) &#x7c; [test report](https://oci-distribution-conformance-results.s3.amazonaws.com/quay.html) |
-
-### Commercial
-
-| Registry | Status | Notes| Links |
-| -------- | -------- | -------- | -------- |
-| [JCR Home](https://jfrog.com/container-registry/) | [![](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/jcr/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Ajcr) | | [job definition](https://github.com/bloodorangeio/oci-distribution-conformance-results/blob/master/.github/workflows/jcr.yml) &#x7c; [test report](https://oci-distribution-conformance-results.s3.amazonaws.com/jcr.html) |
+| [JFrog Container Registry](https://jfrog.com/container-registry/) | JFrog | [![](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/jcr/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Ajcr) | | [job definition](https://github.com/bloodorangeio/oci-distribution-conformance-results/blob/master/.github/workflows/jcr.yml) &#x7c; [test report](https://oci-distribution-conformance-results.s3.amazonaws.com/jcr.html) |
 
 ---
 
