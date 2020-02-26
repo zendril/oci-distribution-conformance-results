@@ -13,7 +13,6 @@ jobs:
         image: docker.bintray.io/jfrog/artifactory-jcr:latest
         ports:
           - 8081:8081
-          - 8082:8082
     runs-on: ubuntu-latest
     steps:
       - name: Wait for JCR to be ready
