@@ -10,11 +10,9 @@ jobs:
   run:
     services:
       jcr:
-        image: docker.io/kubernetesken/oci-distribution-conformance-results-jcr:latest
+        image: docker.bintray.io/jfrog/artifactory-jcr:latest
     runs-on: ubuntu-latest
     steps:
-      # - name: Checkout Workspace
-      #   uses: actions/checkout@v2
       # - name: What is Here
       #   run: ls -altr $GITHUB_WORKSPACE/
       # - name: Make Docker Volume Dir
@@ -36,10 +34,14 @@ jobs:
       #       URL: http://jcr:8081/artifactory/api/system/ping
       #       SECONDS_BETWEEN_CHECKS: 5
       #       MAX_TRIES: 20
-      - name: Sleep for 30 seconds
+      - name: Sleep for 80 seconds. Allow JCR to finish startup.
         uses: jakejarvis/wait-action@master
         with:
           time: '80s'
+      - name: Checkout Workspace
+          uses: actions/checkout@v2
+      - name: Apply conformance config to JCR
+        run: curl -u admin:password -X POST -H "Content-type:application/xml" --data-binary "@$GITHUB_WORKSPACE/configurations/jcr/artifactory.config.import.xml"  http://jcr:8081/artifactory/api/system/configuration
       - name: Run OCI Distribution Spec conformance tests
         uses: opencontainers/distribution-spec@master
         env:
@@ -48,6 +50,8 @@ jobs:
           OCI_USERNAME: ${{ secrets.JCR_USERNAME }}
           OCI_PASSWORD: ${{ secrets.JCR_PASSWORD }}
           OCI_DEBUG: true
+      - name: Show JCR Logs
+          run: docker logs "${{ job.services.jcr.id }}"
       # - name: Upload test report to S3
       #   run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/distribution.html
       #   if: always()
