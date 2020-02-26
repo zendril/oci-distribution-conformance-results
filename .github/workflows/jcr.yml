@@ -11,6 +11,9 @@ jobs:
     services:
       jcr:
         image: docker.bintray.io/jfrog/artifactory-jcr:latest
+        ports:
+          - 8081:8081
+          - 8082:8082
     runs-on: ubuntu-latest
     steps:
       # - name: What is Here
@@ -39,9 +42,9 @@ jobs:
         with:
           time: '80s'
       - name: Checkout Workspace
-          uses: actions/checkout@v2
+        uses: actions/checkout@v2
       - name: Apply conformance config to JCR
-        run: curl -u admin:password -X POST -H "Content-type:application/xml" --data-binary "@$GITHUB_WORKSPACE/configurations/jcr/artifactory.config.import.xml"  http://jcr:8081/artifactory/api/system/configuration
+        run: curl -u admin:password -X POST -H "Content-type:application/xml" --data-binary "@$GITHUB_WORKSPACE/configurations/jcr/artifactory.config.import.xml"  http://localhost:${{ job.services.jcr.ports['8081'] }}/artifactory/api/system/configuration
       - name: Run OCI Distribution Spec conformance tests
         uses: opencontainers/distribution-spec@master
         env:
