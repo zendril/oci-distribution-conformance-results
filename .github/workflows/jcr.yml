@@ -54,7 +54,7 @@ jobs:
           OCI_PASSWORD: ${{ secrets.JCR_PASSWORD }}
           OCI_DEBUG: true
       - name: Show JCR Logs
-          run: docker logs "${{ job.services.jcr.id }}"
+        run: docker logs "${{ job.services.jcr.id }}"
       # - name: Upload test report to S3
       #   run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/distribution.html
       #   if: always()
