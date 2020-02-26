@@ -10,7 +10,7 @@ jobs:
   run:
     services:
       jcr:
-        image: docker.io/kubernetesken/oci-distribution-conformance-results/jcr:latest
+        image: docker.io/kubernetesken/oci-distribution-conformance-results-jcr:latest
     runs-on: ubuntu-latest
     steps:
       # - name: Checkout Workspace
