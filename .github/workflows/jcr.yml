@@ -20,14 +20,14 @@ jobs:
       - name: Checkout Workspace
         uses: actions/checkout@v2
       - name: Apply conformance config to JCR
-        run: curl -u admin:password -X POST -H "Content-type:application/xml" --data-binary "@$GITHUB_WORKSPACE/configurations/jcr/artifactory.config.import.xml"  http://localhost:${{ job.services.jcr.ports['8081'] }}/artifactory/api/system/configuration
+        run: curl -u admin:password -X POST -H "Content-type:application/xml" --data-binary "@$GITHUB_WORKSPACE/config/jcr/artifactory.config.import.xml"  http://localhost:${{ job.services.jcr.ports['8081'] }}/artifactory/api/system/configuration
       - name: Run OCI Distribution Spec conformance tests
         uses: opencontainers/distribution-spec@master
         env:
           OCI_ROOT_URL: http://jcr:8081
           OCI_NAMESPACE: conformance-local/oci-conformance-test
-          OCI_USERNAME: ${{ secrets.JCR_USERNAME }}
-          OCI_PASSWORD: ${{ secrets.JCR_PASSWORD }}
+          OCI_USERNAME: admin
+          OCI_PASSWORD: password
           # OCI_DEBUG: true
       - name: Upload test report to S3
         run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/jcr.html
