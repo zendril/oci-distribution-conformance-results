@@ -16,10 +16,12 @@ jobs:
           - 8082:8082
     runs-on: ubuntu-latest
     steps:
+      # Not working. Immediately fails
       - name: Wait for JCR to be ready
         uses: maddox/actions/wait-for-200@master
         env:
-            URL: http://localhost:${{ job.services.jcr.ports['8081'] }}/artifactory/api/system/ping
+            URL: http://jcr:${{ job.services.jcr.ports['8081'] }}/artifactory/api/system/ping
+            # URL: http://localhost:${{ job.services.jcr.ports['8081'] }}/artifactory/api/system/ping
             SECONDS_BETWEEN_CHECKS: 5
             MAX_TRIES: 20
       # - name: Sleep for 80 seconds. Allow JCR to finish startup.
@@ -37,7 +39,7 @@ jobs:
           OCI_NAMESPACE: conformance-local/oci-conformance-test
           OCI_USERNAME: ${{ secrets.JCR_USERNAME }}
           OCI_PASSWORD: ${{ secrets.JCR_PASSWORD }}
-          OCI_DEBUG: true
+          # OCI_DEBUG: true
       # - name: Upload test report to S3
       #   run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/distribution.html
       #   if: always()
